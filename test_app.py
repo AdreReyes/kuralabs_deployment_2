@@ -11,7 +11,7 @@ def test_home_page():
     
 from flask import Flask, redirect, url_for, render_template, request
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 @app.route("/")
 def home():
