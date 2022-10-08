@@ -13,7 +13,7 @@ def test_home_page():
     assert response.status_code == 200
     print("Done.")
     
-@app.route('/users/url-shortener', methods = ['POST'])
+@app.route('/url-shortener-main/url-shortener', methods = ['POST'])
 def user(user_id):
     if request.method == 'POST':
         """modify/update the information for url-shortener"""
