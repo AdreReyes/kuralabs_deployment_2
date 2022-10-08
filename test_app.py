@@ -1,4 +1,7 @@
 from application import app
+from flask import Flask
+from flask import request
+
 
 # def test_quick():
 #   a = "jeff"
