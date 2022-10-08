@@ -1,0 +1,13 @@
+<p>
+- Created an EC2 with ports 22, 80, and 8080 open but really only 22 and 8080 are necessary 
+- SSH into the EC2 from Ubuntu virtual machine 
+- Switch over to Jenkins user if you already know your password by running the command <sudo su - jenkins -s /bin/bash>
+- Now go over to IAM in the AWS console and create an IAM user to grant the Jenkins applications on the Amazon EC2 instance access to the Flask app being deployed via Elastic Beanstalk
+- Give it programmatic access where you will receive an Access Key ID and Secret Access Key (make sure to save it)
+- Install AWS CLI on the Jenkins EC2 and configure by running <curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip” -o "awscliv2.zip”> then <unzip awscliv2.zip>. Installing AWS CLI enables us to interact with AWS services using commands in the command-line shell and the functionality of the commands are equivalent to the browser-based AWS Management Console. 
+- Install Elastic Beanstalk (EB) CLI (I had to keep in mind the path where the eb file is located for later) but when I ran eb - -version the terminal didn’t recognize “eb” as a command
+- I forked the deployment repo and connected Github to the Jenkins server when I set up my multi build branch and provided the Github access token under the “Branch Sources” >> “Github” >>”Github Credentials” page
+- I created my build which was successful.
+- Lastly, I added the deploy stage in my “Jenkinsfile” but the deployment failed. Why? Because I had to add the eb executable file to my shell’s profile script in the user folder so it could execute Elastic Beanstalk CLI. I actually didn’t have a profile script so I ran <nano .bash_profile> and placed the path in there via <export PATH=LOCAL_PATH:$PATH> that I received when I installed EB CLI. I then loaded the profile script into my session via <source ~/>. To make sure EB CLI was installed correctly I ran eb - -version and this time it showed me the version of eb I had.
+- Equally important, I had to create my environment <eb create> in my /var/lib/jenkins/workspace/url-shortener-main directory because without it the eb command was unrecognized and I kept getting the error: “This directory has not been set up with the EB CLI” when I would deploy with Jenkins. Why? Because I didn’t open up my elastic beanstalk environment from the command line and create my flask application in the directory that my Git project was in so that’s why it didn’t recognize the command “eb” until after I did those steps.
+- I ran a test to see if my application would break: I inserted a print statement and the flask environment still built which means the test was successful. It didn’t break my Jenkins build. </p>
