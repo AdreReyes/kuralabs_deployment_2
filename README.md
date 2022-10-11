@@ -6,7 +6,7 @@
 <p> - AWS EC2 </p>
 <p> - Jenkins </p>
 <p> - Oracle VirtualBox Ubuntu VM </p>
-<p> - Elastic Box </p>
+<p> - AWS Elastic Beanstalk </p>
 <p> - Amazon Web Services Command Line Interface (AWS CLI) </p>
 <p> - Elastic Beanstalk Command Line Interface (EB CLI) </p>
     
